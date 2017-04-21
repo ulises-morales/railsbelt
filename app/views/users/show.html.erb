@@ -1,0 +1,20 @@
+<div class="">
+  <nav>
+    <a href="/ideas">Ideas</a>
+    <span>|</span>
+    <a href="/sessions/<%=current_user.id%>" data-method="delete">Logout</a>
+  </nav>
+</div>
+
+<div class="">
+  <h4>Name: <%= @user.name %></h4>
+  <h4>Alias: <%= @user.alias %></h4>
+  <h4>Email: <%= @user.email %></h4>
+</div>
+
+<hr>
+
+<div class="">
+  <p>Total Number of Posts: <%= @user.ideas.count %></p>
+  <p>Total Number of Likes: <%= @user.likes.count %></p>
+</div>

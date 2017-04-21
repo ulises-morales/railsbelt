@@ -1,0 +1,32 @@
+<div class="">
+  <nav>
+    <a href="/ideas">Ideas</a>
+    <span>|</span>
+    <a href="/sessions/<%=current_user.id%>" data-method="delete">Logout</a>
+  </nav>
+
+  <div class="row">
+    <span><a href="users/<%= @idea.user_id %>"><%= @idea.user.name %></a> Says: </span>
+    <textarea rows="3" cols="60"><%= @idea.post %></textarea>
+  </div>
+
+  <div class="row">
+    <h3>People Who Liked This Post:</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Alias</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ideafans.each do |user| %>
+          <tr>
+            <td><a href="/users/<%= user.id %>"><%= user.alias %></a></td>
+            <td><%= user.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

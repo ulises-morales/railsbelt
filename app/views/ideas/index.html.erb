@@ -1,0 +1,67 @@
+<div class="">
+  <nav>
+    <a href="/sessions/<%=current_user.id%>" data-method="delete">Logout</a>
+  </nav>
+</div>
+
+<div class="">
+  <h2>Hi <%= current_user.name %>!</h2>
+
+  <div class="row">
+    <form class="" action="/ideas" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <div class="form-group">
+        <textarea name="idea[post]" rows="3" cols="80" placeholder="What is your best idea today?"></textarea>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-3">
+          <input class="btn btn-info" type="submit" value="Idea!">
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <% @ideas.each do |idea| %>
+      <div class="row">
+        <span><a href="users/<%= idea.user_id %>"><%= idea.user.name %></a> Says: </span>
+        <textarea rows="3" cols="60"><%= idea.post %></textarea>
+      </div>
+      <div class="row">
+        <% unless idea.users.include?(current_user) %>
+          <div class="col-md-2">
+            <form action = "/likes" method = "post">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input type="hidden" name="like[idea_id]" value = "<%= idea.id %>">
+              <input class="btn btn-link" type="submit" name="Like" value = "Like">
+            </form>
+          </div>
+        <% else %>
+          <div class="col-md-3">
+            <form action = "/likes/<%= Like.where(user: current_user, idea: idea).first.id%>" method = "post">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input type="hidden" name="_method" value="delete">
+              <input class="btn btn-warning" type="submit" name="Unlike" value = "Unlike">
+            </form>
+          </div>
+        <% end %>
+        <div class="">
+          <span><a href="/ideas/<%= idea.id %>"><%= idea.likes.count %> People</a> liked this</span>
+        </div>
+        <div class="col-md-3">
+          <% if idea.user == current_user %>
+            <form action = "/ideas/<%= idea.id %>" method = "post">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input type="hidden" name="_method" value="delete">
+              <input class="btn btn-danger" type = 'submit' value = "Delete Idea">
+            </form>
+          <% end %>
+        </div>
+      <br><br>
+      </div>
+    <% end %>
+
+  </div>
+</div>

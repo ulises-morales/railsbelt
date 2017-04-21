@@ -1,0 +1,73 @@
+<div  class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="col-xs-5">
+
+        <h1>Register</h1>
+        <div class="form">
+          <form action="/users" method="post">
+
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+            <div class="form-group">
+              <label for="name" class="control-label">Name</label>
+              <input class="form-control" type="text" id="name" name = "user[name]" placeholder="Enter Your Name">
+            </div>
+
+            <div class="form-group">
+              <label for="alias" class="control-label">Alias</label>
+              <input class="form-control" type="text" id="alias" name = "user[alias]" placeholder="Enter Your Alias">
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="control-label">Email</label>
+              <input class="form-control" type="text" id="email" name = "user[email]" placeholder="Enter Your Email">
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="control-label">Password</label>
+              <input class="form-control" type="password" id="password" name = "user[password]" placeholder="Enter Your Password">
+            </div>
+
+            <div class="form-group">
+              <label for="password_confimation" class="control-label">Confirm Password</label>
+              <input class="form-control" type="password" id="password_confimation" name = "user[password_confimation]" placeholder="Confirm Your Password">
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-3">
+                <input class="btn btn-info" type="submit" name="Register" value="Register">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <h1>Login</h1>
+        <div class="form">
+          <form action="/sessions" method="post">
+
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+            <div class="form-group">
+              <label for="email" class="col-sm-2 control-label">Email</label>
+              <input class="form-control" type="text" id="email" name = "email" placeholder="Enter Your Email">
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="col-sm-2 control-label">Password</label>
+              <input class="form-control" type="password" id="email" name = "password" placeholder="Enter Your Password">
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-3">
+                <input class="btn btn-info" type="submit" name="Log In" value="Login">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
